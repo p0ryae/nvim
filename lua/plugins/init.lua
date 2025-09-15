@@ -1,11 +1,10 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -13,8 +12,68 @@ return {
     end,
   },
 
+  {
+    "nvim-java/nvim-java",
+  },
+
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      ui = { enable = false },
+      workspaces = {
+        {
+          name = "ubc",
+          path = "~/UBC/Vaults",
+        },
+      },
+      attachments = {
+        img_folder = "./assets",
+      },
+    },
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" },
+    opts = {
+      render_modes = true,
+      file_types = { "markdown" },
+    },
+    ft = { "markdown" },
+  },
+
+  {
+    "3rd/image.nvim",
+    build = false,
+    opts = {
+      processor = "magick_cli",
+    },
+    ft = { "markdown" },
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local opts = require "nvchad.configs.cmp"
+
+      -- extend NvChad cmp sources with spell
+      table.insert(opts.sources, { name = "spell" })
+
+      return opts
+    end,
+    dependencies = {
+      "f3fora/cmp-spell",
+    },
+  },
+
   -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  { import = "nvchad.blink.lazyspec" },
 
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
