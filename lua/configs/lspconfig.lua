@@ -18,14 +18,4 @@ lspconfig.eslint.setup {
   settings = {
     nodePath = nodePath,
   },
-  on_attach = function(client, bufnr)
-    if lspconfig.eslint.on_attach then
-      lspconfig.eslint.on_attach(client, bufnr)
-    end
-
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "LspEslintFixAll",
-    })
-  end,
 }

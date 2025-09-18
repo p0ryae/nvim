@@ -7,6 +7,10 @@ local options = {
     json = { "prettierd" },
     jsonc = { "prettierd" },
     java = { "google-java-format" },
+    typescript = { "prettierd" },
+    typescriptreact = { "prettierd" },
+    javascript = { "prettierd" },
+    javascriptreact = { "prettierd" },
     -- html = { "prettier" },
   },
 
