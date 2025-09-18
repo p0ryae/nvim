@@ -13,11 +13,7 @@ return {
   },
 
   {
-    "nvim-java/nvim-java",
-  },
-
-  {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*",
     lazy = true,
     ft = "markdown",
@@ -25,6 +21,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = {
+      legacy_commands = false,
       ui = { enable = false },
       workspaces = {
         {
@@ -33,7 +30,15 @@ return {
         },
       },
       attachments = {
-        img_folder = "./assets",
+        img_folder = "assets",
+        img_name_func = function(fname)
+          if fname == "" or fname == nil then
+            return string.format("Pasted image %s", os.date "%Y%m%d%H%M%S")
+          else
+            log.err "Invalid file name"
+            return nil
+          end
+        end,
       },
     },
   },

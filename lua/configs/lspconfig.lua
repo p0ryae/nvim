@@ -1,33 +1,20 @@
-local lspconfig = require "lspconfig"
 local Path = require "plenary.path"
 
-require("java").setup {
-  jdk = {
-    auto_install = false,
-  },
-}
-
-local servers = { "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls" }
-for _, srv in ipairs(servers) do
-  lspconfig[srv].setup {}
-end
-
--- ESLint with nodePath
 local nodePath = Path:new("./.yarn/sdks"):absolute() or ""
-lspconfig.eslint.setup {
-  settings = {
-    nodePath = nodePath,
-  },
+local base_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config("eslint", {
+  settings = { nodePath = nodePath },
   on_attach = function(client, bufnr)
-    if lspconfig.eslint.on_attach then
-      lspconfig.eslint.on_attach(client, bufnr)
+    if not base_on_attach then
+      return
     end
 
+    base_on_attach(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
-      callback = function()
-        pcall(vim.cmd, "LspEslintFixAll")
-      end,
+      command = "LspEslintFixAll",
     })
   end,
-}
+})
+
+vim.lsp.enable { "eslint", "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls" }
