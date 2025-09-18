@@ -15,3 +15,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spelllang = "en_ca"
   end,
 })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "ObsidianNoteEnter",
+  callback = function(ev)
+    vim.keymap.set("n", "<leader>op", "<cmd>Obsidian paste_img<cr>", {
+      buffer = ev.buf,
+      desc = "[P]aste image",
+    })
+  end,
+})

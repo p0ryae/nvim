@@ -30,15 +30,8 @@ return {
         },
       },
       attachments = {
-        img_folder = "assets",
-        img_name_func = function(fname)
-          if fname == "" or fname == nil then
-            return string.format("Pasted image %s", os.date "%Y%m%d%H%M%S")
-          else
-            log.err "Invalid file name"
-            return nil
-          end
-        end,
+        img_folder = "/assets/imgs",
+        confirm_img_paste = false,
       },
     },
   },
