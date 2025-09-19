@@ -13,6 +13,11 @@ return {
   },
 
   {
+    "mfussenegger/nvim-jdtls",
+    ft = "java",
+  },
+
+  {
     "obsidian-nvim/obsidian.nvim",
     version = "*",
     lazy = true,
@@ -43,7 +48,7 @@ return {
       render_modes = true,
       file_types = { "markdown" },
     },
-    ft = { "markdown" },
+    ft = "markdown",
   },
 
   {
@@ -52,7 +57,7 @@ return {
     opts = {
       processor = "magick_cli",
     },
-    ft = { "markdown" },
+    ft = "markdown",
   },
 
   {

@@ -17,4 +17,9 @@ vim.lsp.config("eslint", {
   end,
 })
 
+vim.lsp.config("jdtls", {
+  cmd = { "jdtls" },
+  root_dir = require("jdtls.setup").find_root { "gradlew" } or vim.fn.getcwd(),
+})
+
 vim.lsp.enable { "eslint", "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls" }
