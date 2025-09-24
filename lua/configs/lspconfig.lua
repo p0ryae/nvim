@@ -22,4 +22,12 @@ vim.lsp.config("jdtls", {
   root_dir = require("jdtls.setup").find_root { "gradlew" } or vim.fn.getcwd(),
 })
 
-vim.lsp.enable { "eslint", "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls" }
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = { typeCheckingMode = "basic" },
+    },
+  },
+})
+
+vim.lsp.enable { "eslint", "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls", "basedpyright" }
