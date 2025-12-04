@@ -30,4 +30,4 @@ vim.lsp.config("basedpyright", {
   },
 })
 
-vim.lsp.enable { "eslint", "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls", "basedpyright" }
+vim.lsp.enable { "eslint", "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls", "basedpyright", "neocmake" }
