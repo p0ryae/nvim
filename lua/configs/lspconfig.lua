@@ -30,4 +30,26 @@ vim.lsp.config("basedpyright", {
   },
 })
 
-vim.lsp.enable { "eslint", "html", "cssls", "ts_ls", "clangd", "jsonls", "jdtls", "basedpyright", "neocmake" }
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      diagnostics = {
+        enable = true,
+      },
+    },
+  },
+})
+
+vim.lsp.enable {
+  "html",
+  "cssls",
+  "ts_ls",
+  "clangd",
+  "jsonls",
+  "jdtls",
+  "basedpyright",
+  "neocmake",
+  "gopls",
+  "rust_analyzer",
+  "kotlin_language_server",
+}
