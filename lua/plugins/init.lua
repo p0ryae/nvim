@@ -42,14 +42,6 @@ return {
   },
 
   {
-    "lervag/vimtex",
-    lazy = false,
-    init = function()
-      vim.g.vimtex_view_method = "zathura"
-    end
-  },
-
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" },
     opts = {
