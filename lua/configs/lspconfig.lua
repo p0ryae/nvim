@@ -52,4 +52,5 @@ vim.lsp.enable {
   "gopls",
   "rust_analyzer",
   "kotlin_language_server",
+  "svelte",
 }

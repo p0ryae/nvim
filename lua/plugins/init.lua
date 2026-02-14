@@ -18,30 +18,6 @@ return {
   },
 
   {
-    "obsidian-nvim/obsidian.nvim",
-    version = "*",
-    lazy = true,
-    ft = "markdown",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    opts = {
-      legacy_commands = false,
-      ui = { enable = false },
-      workspaces = {
-        {
-          name = "ubc",
-          path = "~/UBC/Vaults",
-        },
-      },
-      attachments = {
-        img_folder = "/assets/imgs",
-        confirm_img_paste = false,
-      },
-    },
-  },
-
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" },
     opts = {
