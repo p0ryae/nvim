@@ -22,13 +22,13 @@ vim.lsp.config("jdtls", {
   root_dir = require("jdtls.setup").find_root { "gradlew" } or vim.fn.getcwd(),
 })
 
--- vim.lsp.config("basedpyright", {
---   settings = {
---     basedpyright = {
---       analysis = { typeCheckingMode = "basic" },
---     },
---   },
--- })
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = { typeCheckingMode = "basic" },
+    },
+  },
+})
 
 vim.lsp.config("rust_analyzer", {
   settings = {
@@ -53,4 +53,5 @@ vim.lsp.enable {
   "rust_analyzer",
   "kotlin_language_server",
   "svelte",
+  "docker_language_server",
 }

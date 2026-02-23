@@ -6,6 +6,12 @@ require "nvchad.options"
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
 vim.diagnostic.config {
-  -- virtual_lines = true,
-  virtual_text = true,
+  virtual_lines = true,
+  -- virtual_text = true,
+}
+
+vim.filetype.add {
+  pattern = {
+    [".*%-compose%.ya?ml"] = "yaml.docker-compose",
+  },
 }
