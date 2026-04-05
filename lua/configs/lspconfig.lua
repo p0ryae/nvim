@@ -55,4 +55,5 @@ vim.lsp.enable {
   "svelte",
   "docker_language_server",
   "elixirls",
+  "nixd"
 }
