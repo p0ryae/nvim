@@ -18,24 +18,48 @@ return {
   },
 
   {
-    "sudo-tee/opencode.nvim",
+    "mason-org/mason.nvim",
+    enabled = false,
+  },
+
+  {
+    "nickjvandyke/opencode.nvim",
+    version = "*",
     lazy = false,
-    config = function()
-      require("opencode").setup {}
-    end,
     dependencies = {
-      "nvim-lua/plenary.nvim",
       {
-        "MeanderingProgrammer/render-markdown.nvim",
+        "folke/snacks.nvim",
+        optional = true,
         opts = {
-          anti_conceal = { enabled = false },
-          file_types = { "markdown", "opencode_output" },
+          input = {},
+          picker = {
+            actions = {
+              opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
+            },
+            win = {
+              input = {
+                keys = {
+                  ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+                },
+              },
+            },
+          },
         },
-        ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
       },
-      "hrsh7th/nvim-cmp",
-      "nvim-telescope/telescope.nvim",
     },
+    config = function()
+      vim.o.autoread = true
+
+      vim.keymap.set({ "n", "x" }, "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
+      vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end,                          { desc = "Execute opencode action…" })
+      vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end,                          { desc = "Toggle opencode" })
+
+      vim.keymap.set({ "n", "x" }, "go",  function() return require("opencode").operator("@this ") end,        { desc = "Add range to opencode", expr = true })
+      vim.keymap.set("n",          "goo", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Add line to opencode", expr = true })
+
+      vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
+      vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
+    end,
   },
 
   {
