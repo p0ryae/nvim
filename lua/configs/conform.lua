@@ -6,14 +6,15 @@ local options = {
     css = { "prettierd" },
     cpp = { "clang_format" },
     c = { "clang_format" },
+    java = { "google-java-format" },
+
     json = { "prettierd" },
     jsonc = { "prettierd" },
-    java = { "google-java-format" },
+
     typescript = {},
     typescriptreact = {},
     javascript = { "prettierd" },
     javascriptreact = { "prettierd" },
-    -- html = { "prettier" },
   },
 
   format_on_save = {
