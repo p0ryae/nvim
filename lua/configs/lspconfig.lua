@@ -46,6 +46,6 @@ vim.lsp.enable {
   "kotlin_language_server",
   "svelte",
   "docker_language_server",
-  "elixirls",
+  "expert",
   "nixd",
 }
