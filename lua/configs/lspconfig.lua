@@ -35,7 +35,7 @@ vim.lsp.config("rust_analyzer", {
 vim.lsp.enable {
   "html",
   "cssls",
-  "tsgo",
+  "ts_ls",
   "clangd",
   "jsonls",
   "jdtls",
