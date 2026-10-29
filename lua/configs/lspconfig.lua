@@ -1,9 +1,15 @@
 local Path = require "plenary.path"
 
-local nodePath = Path:new("./.yarn/sdks"):absolute() or ""
+local function pnp_root(dir)
+  local found = vim.fs.find(".pnp.cjs", { path = dir or vim.fn.getcwd(), upward = true })[1]
+  return found and vim.fs.dirname(found) or nil
+end
+
 local base_on_attach = vim.lsp.config.eslint.on_attach
 vim.lsp.config("eslint", {
-  settings = { nodePath = nodePath },
+  settings = {
+    nodePath = (pnp_root() or vim.fn.getcwd()) .. "/.yarn/sdks",
+  },
   on_attach = function(client, bufnr)
     if base_on_attach then
       base_on_attach(client, bufnr)
@@ -12,6 +18,17 @@ vim.lsp.config("eslint", {
       buffer = bufnr,
       command = "LspEslintFixAll",
     })
+  end,
+})
+
+vim.lsp.config("ts_ls", {
+  before_init = function(params, config)
+    local root = pnp_root(config.root_dir)
+    if root then
+      params.initializationOptions = vim.tbl_deep_extend("force", params.initializationOptions or {}, {
+        tsserver = { path = root .. "/.yarn/sdks/typescript/lib/tsserver.js" },
+      })
+    end
   end,
 })
 
