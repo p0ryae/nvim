@@ -32,6 +32,14 @@ vim.lsp.config("ts_ls", {
   end,
 })
 
+vim.lsp.config("svelte", {
+  cmd = function(dispatchers, config)
+    return vim.lsp.rpc.start({ "yarn", "svelteserver", "--stdio" }, dispatchers, {
+      cwd = config.root_dir,
+    })
+  end,
+})
+
 vim.lsp.config("jdtls", {
   cmd = { "jdtls" },
   root_dir = require("jdtls.setup").find_root { "gradlew" } or vim.fn.getcwd(),
